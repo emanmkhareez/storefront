@@ -1,12 +1,13 @@
 const initialState = {
     categories: [
-        { name: 'Electronics', description: 'Here you can find a lot of Electronic products' },
-        { name: 'Food', description: 'Here you can find a lot of food choices' }
+        { category: 'electronics', name: "ELECRTRONICS", description: 'Here you can find a lot of Electronic products' },
+        { category: 'mobile', name: "MOBILE PHONES", description: 'Here you can find a lot of MOBILE PHONES' },
+        { category: 'food', name: "FOOD", description: 'Here you can find a lot of food' },
     ],
     activeCategory: {},
 }
 
-export  function ReducerCategories(state = initialState, action) {
+export default function reducer(state = initialState, action) {
 
     const { payload, type } = action;
 
@@ -15,7 +16,7 @@ export  function ReducerCategories(state = initialState, action) {
             let modified = {};
 
             state.categories.forEach(item => {
-                if (item.name === payload) {
+                if (item.category === payload) {
                     modified = item;
                 }
             });
@@ -25,13 +26,5 @@ export  function ReducerCategories(state = initialState, action) {
             };
         default:
             return state;
-    }
-}
-
-
-export function changeSelected(name) {
-    return {
-        type: 'ChangeActive',
-        payload: name
     }
 }

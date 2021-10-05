@@ -1,27 +1,28 @@
-import React from 'react'
-// import { Provider } from 'react-redux'
-
-import './App.css';
-import Header from './components/Header/Header';
-import Footer from './components/footer/Footer';
-import Product from './components/Products/Products';
+import React from 'react';
+import { useState } from 'react';
 import Categories from './components/Categories/Categories';
+import Header from './components/Header/Header';
+import Products from './components/Products/Products';
+import Footer from './components/footer/Footer';
+import Cart from './components/Cart'
 
 
 function App() {
-  return (
-    
-  <>
+  const [showCart, setShowCart] = useState(false);
 
-  <Header/>
-  <Categories/>
-  <br></br>
-<Product/>
-  <br></br>
-  <Footer/>
-\
-  </>
-  );
+  function handleShowCart() {
+    setShowCart(true)
+  }
+  
+  return (
+    <div>
+     <Header show={handleShowCart}/>
+     {showCart && <Cart/>}
+     <Categories/>
+     <Products/>
+     <Footer/>     
+    </div>
+  )
 }
 
-export default App;
+export default App
