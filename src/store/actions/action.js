@@ -4,12 +4,13 @@ import axios from 'axios';
 export const getData = () => {
     return async (dispatch) => {
         const res = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+        //dispatch action to load data 
         dispatch(handleApiData(res.data.results));
         console.log(res.data);
     };
 };
 
-// load the products
+//  action to load the products
 export const handleApiData = (payload) => {
     return {
         type: 'LOAD_PRODUCTS',
@@ -17,7 +18,7 @@ export const handleApiData = (payload) => {
     };
 };
 
-// change active products
+//  action to change active products
 export function getItems(name) {
     return {
         type: 'changeActive',
@@ -25,7 +26,7 @@ export function getItems(name) {
     }
 }
 
-// change the inStock items (reducing)
+//  action to change the inStock items (reducing)
 export function changeBasketItems(product) {
     return {
         type: 'Change-Basket-Items',
@@ -33,7 +34,7 @@ export function changeBasketItems(product) {
     }
 }
 
-// change the active category
+// action to  change the active category
 export function changeSelected(category) {
     return {
         type: 'ChangeActive',
@@ -41,7 +42,7 @@ export function changeSelected(category) {
     }
 }
 
-// add items to the cart
+//  action to add items to the cart
 export function addItemsToCart(product) {
     return {
         type: 'AddItemsCart',

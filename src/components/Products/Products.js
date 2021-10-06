@@ -20,6 +20,7 @@ function Products(props) {
     const classes = useStyles();
 
     function handleAdding(element) {
+        //dispatch this actions
         props.addItemsToCart(element);
         props.changeBasketItems(element);
         props.getItems(props.category.name);
@@ -27,6 +28,7 @@ function Products(props) {
 
     return (
         <>
+            
             {props.products.activeProducts.map(element => {
                 return <Card className={classes.root} style={{ display: 'inline-block', marginLeft: '9%', height: '5%', width: '40%', marginTop: '3%', marginBottom: '3%' }}>
                     <CardActionArea>
@@ -39,9 +41,7 @@ function Products(props) {
                             <Typography gutterBottom variant="h5" component="h2">
                                 {element.name} - ${element.price}
                             </Typography>
-                            {/* <Typography variant="body2" color="textSecondary" component="p">
-                                {element.description}
-                            </Typography> */}
+                            
                             <Typography variant="body2" color="textPrimary" component="h3" >
                                 Items In Stock: ({element.inStock})
                             </Typography>
@@ -62,6 +62,7 @@ function Products(props) {
         </>
     )
 }
+// this function  we used to return some state info from redux store 
 function mapStateToProps(state) {
     return {
         category: state.categories.activeCategory,
@@ -69,10 +70,12 @@ function mapStateToProps(state) {
         cartProducts: state.cart
     };
 }
+// this function used to dispatch the action creator from redux
 const mapDispatchToProps = {
     getItems,
     addItemsToCart,
     changeBasketItems
 }
 
+//connect these fun with our  react commponent
 export default connect(mapStateToProps, mapDispatchToProps)(Products)
